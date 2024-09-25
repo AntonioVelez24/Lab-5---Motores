@@ -9,16 +9,25 @@ public class MenuControl : MonoBehaviour
     public GameObject mainMenu;
     private bool activeAudioPanel = false;
     private bool activeExitPanel = false;
+    private bool startingGame = false;
+    public GameObject startText;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if (startingGame == false)
+        {
+            if (Input.anyKey)
+            {
+                startText.SetActive(false);
+                mainMenu.SetActive(true);
+                startingGame = true;
+            }
+        }
     }
     public void SetAudioPanel()
     {
