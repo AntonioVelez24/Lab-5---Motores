@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class MenuControl : MonoBehaviour
 {
+    public CinemachineVirtualCamera menuCamera;
+    public CinemachineVirtualCamera startCamera;
+    public CinemachineVirtualCamera virtualCamera1;
+    public CinemachineVirtualCamera virtualCamera2;
     public GameObject audioPanel;
     public GameObject exitPanel;
     public GameObject mainMenu;
@@ -26,6 +31,8 @@ public class MenuControl : MonoBehaviour
                 startText.SetActive(false);
                 mainMenu.SetActive(true);
                 startingGame = true;
+                startCamera.Priority = 0;
+                menuCamera.Priority = 100;
             }
         }
     }
@@ -36,12 +43,16 @@ public class MenuControl : MonoBehaviour
             activeAudioPanel = true;
             audioPanel.SetActive(true);
             mainMenu.SetActive(false);
+            menuCamera.Priority = 0;
+            virtualCamera1.Priority = 100;
         }
         else 
         {
             activeAudioPanel = false;
             audioPanel.SetActive(false);
             mainMenu.SetActive(true);
+            menuCamera.Priority = 100;
+            virtualCamera1.Priority = 0;
         }
     }
     public void SetExitPanel()
@@ -51,12 +62,16 @@ public class MenuControl : MonoBehaviour
             activeExitPanel = true;
             exitPanel.SetActive(true);
             mainMenu.SetActive(false);
+            menuCamera.Priority = 0;
+            virtualCamera2.Priority = 100;
         }
         else
         {
             activeExitPanel = false;
             exitPanel.SetActive(false);
             mainMenu.SetActive(true);
+            menuCamera.Priority = 100;
+            virtualCamera2.Priority = 0;
         }
     }
     public void ExitGame()
